@@ -7,7 +7,8 @@
 	{
 		width: 90%;
 		margin: auto;
-	}
+		
+    }
 	header
 	{
 		
@@ -205,6 +206,7 @@
 		position: absolute;
         margin-left:5%; 
 
+
 	}
 	.supreme
 	{
@@ -315,7 +317,7 @@
     	width: 40px;
     	height: 40px;
     	position: absolute;
-  			
+  		
     	transform: rotate(45deg);
     	top: 0%;
     	left: 0%;
@@ -439,15 +441,15 @@
     	margin-top:20px; 
     	padding: 10px
     }
-    .underline1
+    span
     {
     	position: absolute;
     	width: 140px;
     	height: 3px;
     	background-color: black;
-    	top: 58%;
+    	top: 59%;
     }
-    .underline1:after
+    span:after
     {
     	content: '';
     	position: absolute;
@@ -501,3 +503,68 @@
 		color: black;
 		
 	}
+
+
+.blinktext1
+{
+animation: blinkinga 2s infinite;
+}
+@keyframes blinkinga
+{
+	  0% {  color:#3CEE11;  }
+  100% { color: #2D8C16; }
+
+}
+.blink2
+{
+animation: blinkingb 2s infinite;
+}
+@keyframes blinkingb
+{
+	  0% {  color:#F4B29F;  }
+  100% { color: #CA3206; }
+
+}
+.blinktext3
+{
+animation: blinkingc 2s infinite;
+}
+@keyframes blinkingc
+{
+	  0% {  color:#899DF2;  }
+  100% { color: #0834F0; }
+
+}
+
+.blinkbutton {                              
+   background-color: #004A7F;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Arial;
+  font-size: 20px;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+}
+@-webkit-keyframes glowing {
+  0% {  -webkit-box-shadow: 0 0 3px #3390FF; }
+  50% {  -webkit-box-shadow: 0 0 40px white; }
+  100% {  -webkit-box-shadow: 0 0 3px #07A1F5; }
+}
+
+
+.blinkbutton {
+  -webkit-animation: glowing 2000ms infinite;
+
+}
+.blinkbutton
+{
+
+	height: 27px;
+	line-height: 27px;
+}
+
