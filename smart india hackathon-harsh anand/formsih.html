@@ -1,0 +1,263 @@
+<div class="row">
+                <div class="col-sm-12 frmRight">
+                     <div class="panel" style="z-index: 10;
+	background-color: #ffffff;
+	padding: 0 !important;
+	border-radius: 4px;
+	-moz-border-radius: 4px;      1f5b83   blue
+                                      
+	border: 1px solid bisque;
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);                               7597476620
+	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+	-moz-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+	background-clip: padding-box;
+	opacity: 0.97;
+	filter: alpha(opacity = 97);">
+                <div class="panel-heading panel-primary" style="padding-top:5px;background-color:#428BCA">
+                    <h4 class="panel-title">Fresh Student Registration Form For Academic Year 2017-18</h4>
+                </div>
+               
+                <div class="panel-body" style="background-color:beige">
+                    <span style="color:red"><b></b></span>
+                            
+<form id="studentRegistration" name="studentfrm" onsubmit="return validatefrm();" action="/studentRegistration.action" method="post" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
+                        <div class="row">
+                            <div class="col-sm-6 required">
+                               <label id="studentRegistration_stdRegfrm_stateOfDomocile" for="stateDomicile">State of Domicile</label>
+                                 <select name="stateDomicile" id="stateDomicile" class="form-control input-sm" title="" data-toggle="tooltip" data-original-title="Please Select the State to Which You belong">
+    <option value="-1">Choose your option</option>
+    <option value="35">ANDAMAN AND NICOBAR</option>
+    <option value="28">ANDHRA PRADESH</option>
+    <option value="12">ARUNACHAL PRADESH</option>
+    <option value="18">ASSAM</option>
+    <option value="10">BIHAR</option>
+    <option value="4">CHANDIGARH</option>
+    <option value="22">CHHATTISGARH</option>
+    <option value="26">DADRA AND NAGAR HAVELI</option>
+    <option value="25">DAMAN AND DIU</option>
+    <option value="7">DELHI</option>
+    <option value="30">GOA</option>
+    <option value="24">GUJARAT</option>
+    <option value="6">HARYANA</option>
+    <option value="2">HIMACHAL PRADESH</option>
+    <option value="1">JAMMU AND KASHMIR</option>
+    <option value="20">JHARKHAND</option>
+    <option value="29">KARNATAKA</option>
+    <option value="32">KERALA</option>
+    <option value="31">LAKSHADWEEP</option>
+    <option value="23">MADHYA PRADESH</option>
+    <option value="27">MAHARASHTRA</option>
+    <option value="14">MANIPUR</option>
+    <option value="17">MEGHALAYA</option>
+    <option value="15">MIZORAM</option>
+    <option value="13">NAGALAND</option>
+    <option value="21">ODISHA</option>
+    <option value="34">PUDUCHERRY</option>
+    <option value="3">PUNJAB</option>
+    <option value="8">RAJASTHAN</option>
+    <option value="11">SIKKIM</option>
+    <option value="33">TAMIL NADU</option>
+    <option value="36">TELANGANA</option>
+    <option value="16">TRIPURA</option>
+    <option value="5">UTTARAKHAND</option>
+    <option value="9">UTTAR PRADESH</option>
+    <option value="19">WEST BENGAL</option>
+
+
+</select>
+
+
+                            </div>
+                            <div class="col-sm-6 required">
+                                <label id="studentRegistration_stdRegfrm_scholarshipCategory" for="scholarshipCategory">Scholarship Category</label>
+                                <select name="scholarshipCategory" id="scholarshipCategory" class="form-control input-sm" title="" data-toggle="tooltip" data-original-title="Please Select Pre Matric For Class 1-10 ; For Others Class / Course Select Post Matric / Top Class / MCM Option">
+    <option value="-1">Choose your option</option>
+    <option value="1">Pre Matric</option>
+    <option value="2">Post Matric/Top Class/MCM</option>
+
+
+</select>
+
+
+                                    </div>
+                        </div>
+                        <div class="row voffset1">
+                            <div class="col-sm-6 required">
+                                <label id="studentRegistration_stdRegfrm_nameOfStudent" for="studentName">Name of Student</label>
+                                <input type="text" name="studentName" maxlength="100" value="" id="studentName" class="form-control input-sm">
+                            </div>
+                           <div class="col-sm-6 required">
+                                <label id="studentRegistration_stdRegfrm_schemeType" for="schemeType">Scheme Type</label>
+                                <select name="schemeType" id="schemeType" class="form-control input-sm" data-toggle="tooltip" data-original-title="" title="">
+    <option value="-1">Choose your option</option>
+    <option value="1">Scholarship Scheme</option>
+    <option value="2">Incentive Scheme</option>
+
+
+</select>
+
+
+                                    </div>
+                            </div>
+                            <div class="row voffset1">
+                                 <div class="col-sm-6 required">
+                                    
+                                <input type="hidden" name="serverdate" id="serverdate" value="2018">
+                                <label id="studentRegistration_stdRegfrm_dateOfBirth" for="dateOfBirth">Date of Birth (DD/MM/YYYY)</label>
+                                     <input type="text" name="dateOfBirth" value="" id="dateOfBirth" class="form-control input-sm" placeholder="__/__/____">
+                            </div>
+                            <div class="col-sm-6 required">
+                                   <label id="studentRegistration_stdRegfrm_gender" for="gender">Gender</label>
+                                 <select name="gender" id="gender" class="form-control input-sm">
+    <option value="-1">Choose your option</option>
+    <option value="F">Female</option>
+    <option value="M">Male</option>
+    <option value="O">Others</option>
+
+
+</select>
+
+
+                            </div>
+                                                
+                        </div>
+                        <div class="row voffset1">
+                             <div class="col-sm-6 required">
+                               <label id="studentRegistration_stdRegfrm_mobileNumber" for="mobileNumber">Mobile Number</label>
+                               <input type="text" name="mobileNumber" maxlength="10" value="" id="mobileNumber" class="form-control input-sm" title="" onkeypress="return isNumberKey(event);" data-toggle="tooltip" data-original-title="First Time Login Can Done After Entering OTP(ONE TIME PASSWORD) Send On Registered Mobile Number. Verify Mobile Number Before Submit"> 
+                            </div>     
+                            
+                               <div class="col-sm-6">
+                                  <label id="studentRegistration_stdRegfrm_email" for="stdRegfrm.email">Email Id</label>
+                                 <input type="text" name="emailAddress" maxlength="100" value="" id="emailAddress" class="form-control input-sm">
+                           
+                            </div>  
+                                 <div class="col-sm-6 required" id="eid1">
+                                     <label>Identification Detail</label><br>
+                                     <select name="eidOpt" id="eidOpt" class="form-control input-sm">
+    <option value="-1">Choose your option</option>
+    <option value="1">Aadhaar Number</option>
+    <option value="3">Bank A/C Number</option>
+
+
+</select>
+
+
+                                      
+                            </div>
+                                      
+                                 <div class="col-sm-6 required" id="eid5" style="display: none;">
+                                    <label>Aadhaar Number</label>
+                                 <input type="text" name="aadharNumber" maxlength="12" value="" id="aadharNumber" class="form-control input-sm" onkeypress="return isNumberKey(event);"> 
+                            </div>
+                            <div class="col-sm-6 required" id="eid2">
+                                <label>Bank IFSC Code</label>                                 
+                                <input type="text" name="ifscCode" maxlength="11" value="" id="ifscCode" class="form-control input-sm">                           
+                            </div>
+                                 <div class="col-sm-6 required" id="eid3">
+                                     <label>Bank A/C Number</label>
+                                     <input type="text" name="bankAcccountNO" maxlength="20" value="" id="bankAcccountNO" class="form-control input-sm"> 
+                            </div>
+                              <div class="col-sm-6 required" id="eid21">
+                                <label>Bank Name</label>
+                                <input type="text" name="bankName" maxlength="50" value="" id="bankName" class="form-control input-sm">                           
+                            </div>
+                           
+                            <div class="col-sm-6" id="bankbranchid" style="overflow-wrap: break-word;display:none"><label>Bank Address</label>
+                                <span id="branchaddress"></span> </div>
+                            </div>
+                
+                   
+                            <div class="row voffset1" id="back_ac_scancopy_div" style="display: none;">
+                              <div class="col-sm-11 required" id="eid3">
+                                     <label><font color="green">**</font> Bank Passbook copy (File Type PDF &amp; JPEG, Maxsize 200 KB)</label>
+            <input type="file" name="bankProofDoc" value="" id="bankProofDoc" class="form-control input-sm"> 
+                            </div>
+                              <div class="col-sm-1 required" id="eid3">
+                                     
+                            </div>
+                            
+                            </div>
+                             <div class="row voffset1" id="back_ac_declartion_div" style="display: none;">
+                           
+                            
+                        <div class="col-sm-12">
+                            <font color="green">**</font>  <font color="blue">  Student should upload the First page of Bank/Postal Account Passbook with photo, In the name of the applicant(either single or joint account with his/her parents/guardian)
+                        </font></div><font color="blue">
+                           
+                            </font></div><font color="blue">
+                                   <div class="row voffset1" id="eiddiv" style="display: none;">
+                            <div class="col-sm-6" id="eid2">
+                                <label>Aadhaar Enrolment Id</label>                                 
+                                 <input type="text" name="eid" value="" id="eid" class="form-control input-sm" placeholder="____/_____/_____">                           
+                            </div>
+                                 <div class="col-sm-6" id="eid3">
+                                     <label>Date/Time (dd/mm/yyyy hh:mm:ss)</label>
+                                 <input type="text" name="eiddateTime" maxlength="19" value="" id="eiddateTime" class="form-control input-sm" placeholder="__/__/____ __:__:__"> 
+                            </div>
+                            
+                            </div>
+                     
+                        <div class="row voffset1" id="eid_scancopy_div" style="display: none;">
+                              <div class="col-sm-11" id="eid3">
+                                     <label>EID Scan Copy (File Type PDF &amp; JPEG, Maxsize 200 KB)</label>
+            <input type="file" name="eidProofDoc" value="" id="eidProofDoc" class="form-control input-sm"> 
+                            </div>
+                              <div class="col-sm-1 required" id="eid3">
+                                     
+                            </div>
+                            
+                            </div>
+                    
+                           <div class="row voffset1">
+                            
+                            <div class="col-sm-6 required">
+                                <label>Captcha Code</label>
+                                <input size="4" type="hidden" id="hiddenCaptcha">
+                                <input type="text" name="chkCaptcha" size="30" maxlength="6" value="" id="chkCaptcha" class="form-control input-sm" placeholder="Captcha..." autocomplete="off">
+                                                
+                            </div>
+                            <div class="col-sm-6">
+                                <label>&nbsp; </label>
+                             <img src="captchaservlet.java" id="imgCaptcha" align="middle" width="130px" height="40px">
+                                                 <img src="img/Button_Refresh.png" alt="refresh" height="30px" width="30px" title="refresh" align="middle" border="0" id="imgRefresh" onclick="setTimeout('resetCaptcha()', 300); return false;">
+                                           
+                            </div>
+                           
+                            </div>
+                        <div class="row voffset1" id="eidDeclaration" style="display: none;">
+
+
+                            <div class="col-sm-12">
+                                <br>
+                                <input type="checkbox" id="iagree">
+                                My Aadhaar number can be used for name identification purposes.
+                            </div>
+
+                        </div>
+                        <div class="row voffset1">
+
+
+                            <div class="col-sm-12">
+                                <font style="color:red">***</font>  First Time Login Can Done After Entering OTP(ONE TIME PASSWORD) Send By NSP. Verify Mobile Number Before Submit
+                            </div>
+
+                        </div>
+                        <div class="row voffset3">
+                          
+                        <div class="col-sm-12 text-center">
+                            <input type="submit" value="REGISTER" id="studentRegistration_submit" name="submit" class="btn btn-info btn-sm">
+
+                        </div>
+                        </div>
+                    <input type="hidden" name="TOKENID" value="y5Ckog5sLHTz97TDEjaksoF6dClefs5J">
+                        <input type="hidden" name="struts.token.name" value="token">
+<input type="hidden" name="token" value="8CCW21NOWLR7E78AXU33S25CBDNWQKOW">
+                    
+
+
+
+                </font></form></div><font color="blue">
+            </font></div><font color="blue">
+                    </font></div><font color="blue">
+            </font></div>

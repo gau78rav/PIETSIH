@@ -1,0 +1,6 @@
+	fa fa-file-text
+fa fa-home
+fas fa-sign-in-alt
+fa fa-envelope                                "O MEANS LIGHTER"
+fa fa-graduation-cap("FOR FAQ")
+fa fa laptop("for services"
