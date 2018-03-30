@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2018 at 07:32 AM
+-- Generation Time: Mar 25, 2018 at 09:26 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -308,11 +308,18 @@ CREATE TABLE IF NOT EXISTS `reg_client` (
   `email` varchar(40) NOT NULL,
   `passwd` varchar(32) NOT NULL,
   `address` varchar(300) NOT NULL,
-  `state_id` int(3) NOT NULL COMMENT 'FK (state_list)',
-  `district_id` int(6) NOT NULL COMMENT 'FK (district_list)',
+  `state` varchar(20) NOT NULL COMMENT 'FK (state_list)',
+  `district` varchar(20) NOT NULL COMMENT 'FK (district_list)',
   `hash` varchar(32) NOT NULL,
   `active` int(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `reg_client`
+--
+
+INSERT INTO `reg_client` (`id`, `fname`, `lname`, `fathername`, `mothername`, `gender`, `dob`, `mobile`, `email`, `passwd`, `address`, `state`, `district`, `hash`, `active`) VALUES
+(6, 'aa', 'aa', 'aa', 'aa', 0, '0222-02-02', '222222', 'aaa@gmail.com', '1de84af5a569cdab9e1a3603a224ec9c', '2222', 'Madhya Pradesh', 'Betul', 'a49e9411d64ff53eccfdd09ad10a15b3', 0);
 
 -- --------------------------------------------------------
 
@@ -417,7 +424,7 @@ ALTER TABLE `opponent_record`
 -- Indexes for table `reg_client`
 --
 ALTER TABLE `reg_client`
-  ADD PRIMARY KEY (`id`), ADD KEY `state_id` (`state_id`), ADD KEY `district_id` (`district_id`);
+  ADD PRIMARY KEY (`id`), ADD KEY `state_id` (`state`), ADD KEY `district_id` (`district`);
 
 --
 -- Indexes for table `state_list`
@@ -438,7 +445,7 @@ ALTER TABLE `next_date_time`
 -- AUTO_INCREMENT for table `reg_client`
 --
 ALTER TABLE `reg_client`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'PK';
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'PK',AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `state_list`
 --
@@ -489,13 +496,6 @@ ADD CONSTRAINT `judge_advocate_ibfk_3` FOREIGN KEY (`court_id`) REFERENCES `cour
 --
 ALTER TABLE `opponent_record`
 ADD CONSTRAINT `opponent_record_ibfk_1` FOREIGN KEY (`case_no`) REFERENCES `file_petition` (`case_no`);
-
---
--- Constraints for table `reg_client`
---
-ALTER TABLE `reg_client`
-ADD CONSTRAINT `reg_client_ibfk_1` FOREIGN KEY (`state_id`) REFERENCES `state_list` (`state_id`),
-ADD CONSTRAINT `reg_client_ibfk_2` FOREIGN KEY (`district_id`) REFERENCES `district_list` (`d_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
