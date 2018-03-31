@@ -1,8 +1,3 @@
-<?php
-session_start();
-$username=$_SESSION['fname'];
- ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -120,7 +115,6 @@ $username=$_SESSION['fname'];
 		{
 			width: 100%;
 			height: auto;
-			border: 1px solid grey;
 			box-shadow: 10px,20px,10px,10px
 		
 		}
@@ -136,8 +130,7 @@ $username=$_SESSION['fname'];
 	    {
 	    	width: 100%;
 	    	height: 500px;
-	    	
-			box-shadow: 10px,20px,10px,10px
+	    	box-shadow: 10px,20px,10px,10px
 	    }
          
 
@@ -175,7 +168,7 @@ $username=$_SESSION['fname'];
 		font-weight: 700;
 		font-size: 20px;
 		color: white;
-		border-color: grey;
+		
 	}
 	.navbar input
 	{
@@ -196,6 +189,7 @@ $username=$_SESSION['fname'];
         margin-top: 10px;
      	width: 100%;
      	height: 40px;
+     	
      	background-color:#4866af;
      }
 		.navbar1 ul
@@ -205,7 +199,7 @@ $username=$_SESSION['fname'];
 		 width: 10%;
 		 line-height: 100%;
 		 height:100%;
-		     	border-left:10px solid white;
+		 border-left:10px solid white;
 
 	}
 	.navbar1 ul li
@@ -234,14 +228,22 @@ $username=$_SESSION['fname'];
 
 
 	}
-
+    .para
+    {
+    	width: 80%;
+    	float: left;
+    	color: white;
+    	padding-top: 10px;
+        font-weight:500;
+        font-family: 'arial'
+    }
 	</style>
 
 </head>
 <body>
 <div class="header">
 	<div class="heading1">
-		<h1>Hello <b><?php echo $username?> </b>! (logged in as Client)</h1>
+		<h1>Hello !! (logged in as Judge)</h1>
 		<img src="img/satya.png" style="float: right;margin-top: 0px;" width="80" height="80"></div>
 	        <div class="heading">
 			<h2><b>National Judiciary Portal</b></h2>
@@ -249,7 +251,9 @@ $username=$_SESSION['fname'];
 	</div>
 </div>
     <nav>
+    	
     	<div class="navbar1">
+            <div class="para"><marquee><p>WE ARE PART OF HACKATHON#2018 AND WE ARE ENJOYING IT. WE ARE PART OF HACKATHON#2018 AND WE ARE ENJOYING IT</p></marquee></div>
     			<ul>
 			<li style="
 	    	border-left:1px solid white;"><a href=""><i class="fa fa-bell-o"></i></a></li>
@@ -266,7 +270,7 @@ $username=$_SESSION['fname'];
 		<ul>
 			<li style="background-color:#2B669B ;color: white"><i class="fa fa-dashboard" style="color: white"></i><br><a href="home.php" target="output" style="color: white">Dashboard</a></li>
 			<li><i class="fa fa-bell-o"></i><br><a href="">Status</a></li>
-			<li><i class="fa fa-user-o"></i><br><a href="profile_client.php" target="output">Profile</a></li>
+			<li><i class="fa fa-user-o"></i><br><a href="profile_judge.php" target="output">Profile</a></li>
 
 			<li><i class="fa fa-home"></i><br><a href="logout.php" >Logout</a></li>
 		</ul>
