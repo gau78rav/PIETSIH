@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conn=mysqli_connect("localhost","root","","sih");
+require_once 'dbcon.php';
 if(isset($_SESSION['bcn_id']))
 {
 	$license=$_SESSION['bcn_id'];

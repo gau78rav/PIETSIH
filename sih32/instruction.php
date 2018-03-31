@@ -1,7 +1,8 @@
 <?php
-session_start();
+  session_start();
   if (!isset($_SESSION['email'])) {
-    header('location: gclientloginform/loginformclient.php');
+    $_SESSION['page_status'] = 1;
+    echo "<script>window.location.href='gclientloginform/loginformclient.php'</script>";
   }
 ?>
 <!DOCTYPE html>

@@ -62,21 +62,21 @@ if(mysqli_num_rows($query)==0)
 </head>
 <body>
 <div class="big-wrapper">
-<h2 class="">Profile <?php echo $email ?> !</h2>
+<h2 class="">Profile <?php echo $row[1] ?> !</h2>
     <div class="wrapper">
         <span >First name</span>
         <div><?php echo $row[1] ?></div>
     </div>
     <div class="wrapper">
-        <span >last name</span>
+        <span >Last name</span>
         <div ><?php echo $row[2] ?></div>
     </div>
     <div class="wrapper">
-        <span>fathername</span>
+        <span>Fathername</span>
         <div><?php echo $row[3] ?></div>
     </div>
     <div class="wrapper">
-        <span>mothername</span>
+        <span>Mothername</span>
         <div><?php echo $row[4] ?></div>
     </div>
      <div class="wrapper">
@@ -92,7 +92,7 @@ if(mysqli_num_rows($query)==0)
         <div><?php echo $row[6] ?></div>
     </div>
     <div class="wrapper">
-    <span>mobile</span>
+    <span>Mobile</span>
     <div><?php echo $row[7] ?></div>
     </div>
     <div class="wrapper">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2018 at 07:55 AM
+-- Generation Time: Mar 31, 2018 at 07:49 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -190,18 +190,33 @@ INSERT INTO `district_list` (`d_id`, `d_name`, `s_id`) VALUES
 --
 
 CREATE TABLE `file_petition` (
+  `client_email` varchar(40) NOT NULL,
   `case_no` varchar(15) NOT NULL,
-  `type` varchar(20) NOT NULL COMMENT 'Civil/Criminal/Religious',
-  `case_info` varchar(1000) NOT NULL,
-  `related_doc` varchar(30) NOT NULL,
+  `Place_of_matter` text NOT NULL,
+  `state_id` varchar(20) NOT NULL COMMENT 'FK (state_list)',
+  `district_id` varchar(20) NOT NULL COMMENT 'FK (district_list)',
+  `option_self_other` varchar(20) NOT NULL,
+  `subject` varchar(30) DEFAULT NULL,
+  `description` varchar(1000) NOT NULL,
+  `advocate_name` varchar(30) DEFAULT NULL,
+  `affidavite` blob,
+  `license_no` varchar(30) DEFAULT NULL,
+  `type` varchar(20) DEFAULT NULL,
+  `date_time` date NOT NULL,
+  `document` blob,
   `status` tinyint(1) NOT NULL,
-  `remark` varchar(500) NOT NULL,
-  `date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `fir_no` varchar(30) NOT NULL COMMENT 'Unique key',
-  `state_id` int(3) NOT NULL COMMENT 'FK (state_list)',
-  `district_id` int(6) NOT NULL COMMENT 'FK (district_list)',
-  `Place_of_matter` text NOT NULL
+  `advocate_approval` tinyint(4) NOT NULL DEFAULT '0',
+  `advocate_reject` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `file_petition`
+--
+
+INSERT INTO `file_petition` (`client_email`, `case_no`, `Place_of_matter`, `state_id`, `district_id`, `option_self_other`, `subject`, `description`, `advocate_name`, `affidavite`, `license_no`, `type`, `date_time`, `document`, `status`, `advocate_approval`, `advocate_reject`) VALUES
+('brajat9090@gmail.com', 'delsha30032018', 'Mansarovar', 'Delhi', 'Shahdara', 'other', 'Landlord&Tenant issue', 'This is trial 2', 'M21026', NULL, '222', 'civil', '1990-09-23', NULL, 1, 1, 0),
+('brajat9090@gmail.com', 'rajjai30032018', 'Mansarovar', 'Rajasthan', 'Jaipur', 'other', 'Landlord&Tenant issue', 'This is trial', 'M21026', '', '111', 'civil', '1998-09-23', 0x417263686976652e7a6970, 0, 0, 0),
+('', 'rajjai31032018', 'Jaipur', 'Rajasthan', 'Jaipur', 'other', 'Contract claims', 'TEst', '', '', '12345678', 'civil', '2018-03-30', 0x392d312e7a6970, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -231,40 +246,84 @@ CREATE TABLE `judge_advocate` (
   `active` int(1) NOT NULL DEFAULT '0' COMMENT 'account activate or not',
   `hash` varchar(32) NOT NULL COMMENT 'account verification',
   `education` varchar(12) NOT NULL,
-  `greading` int(6) DEFAULT NULL
+  `grading` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `judge_advocate`
 --
 
-INSERT INTO `judge_advocate` (`fname`, `lname`, `gender`, `bcn_id`, `dob`, `mobile`, `alternate_mobile`, `email`, `passwd`, `address`, `state_id`, `district_id`, `court_id`, `experience`, `specialization`, `type`, `image`, `user_type`, `active`, `hash`, `education`, `greading`) VALUES
-('Tiger Prabhakhar', 'ji', 'm', 'M21025', '0000-00-00', '9876543234', '', 'prabhakhar@gmail.com', '12345', 'abc', 20, 60, 1, 5, 'Landlord&Tenant issue', 'govt', '', 'judge', 1, 'sih', 'LLB', 0),
-('Mahesh Bhupati', 'ji', 'm', 'M21026', '0000-00-00', '9876543235', '', 'mahesh.bhupati@gmail.com', '12345', 'abc', 20, 60, 1, 4, 'Divorce&Family claims', 'non-govt', '', 'judge', 1, 'sih', 'LLB', 0),
-('Mubarak Begum', 'ji', 'f', 'M21030', '0000-00-00', '9876543239', '', 'mubarak.begum@gmail.com', '12345', 'abc', 20, 85, 1, 9, 'Divorce&Family claims', 'non-govt', '', 'judge', 1, 'sih', 'LLM', 0),
-('Sidduique Alam', 'ji', 'f', 'M21031', '0000-00-00', '9876543240', '', 'sidduique.alam@gmail.com', '12345', 'abc', 20, 85, 1, 11, 'Landlord&Tenant issue', 'non-govt', '', 'judge', 1, 'sih', 'LLM', 0),
-('M S Hussain', 'ji', 'm', 'M21035', '0000-00-00', '9876543244', '', 'mshussain@gmail.com', '12345', 'abc', 20, 85, 1, 13, 'Equitable claims', 'govt', '', 'judge', 1, 'sih', 'LLB', 0),
-('Sameer Hussain', 'ji', 'm', 'M21037', '0000-00-00', '9876543246', '', 'sameer.hussain@gmail.com', '12345', 'abc', 20, 91, 1, 2, 'Divorce&Family claims', 'govt', '', 'judge', 1, 'sih', 'LLB', 0),
-('Navikiran Singh', 'ji', 'm', 'M21038', '0000-00-00', '9876543247', '', 'navikiran.singh@gmail.com', '12345', 'abc', 20, 91, 1, 7, 'Tort claims', 'govt', '', 'judge', 1, 'sih', 'LLB', 0),
-('K.T.S Tulsi', 'ji', 'm', 'M21042', '0000-00-00', '9876543251', '', 'ktusli@gmail.com', '12345', 'abc', 20, 91, 1, 15, 'Divorce&Family claims', 'govt', '', 'judge', 1, 'sih', 'LLM', 0),
-('Sikha Khan', 'ji', 'f', 'M21044', '0000-00-00', '9876543253', '', 'sikha.khan@gmail.com', '12345', 'abc', 20, 70, 1, 4, 'Tort claims', 'govt', '', 'judge', 1, 'sih', 'LLB', 0),
-('Sana Quhershi', 'ji', 'f', 'M21045', '0000-00-00', '9876543254', '', 'sana.quhershi@gmail.com', '12345', 'abc', 20, 70, 1, 15, 'Contract claims', 'non-govt', '', 'judge', 1, 'sih', 'LLM', 0),
-('Sushil Kumar', 'ji', 'm', 'M21049', '0000-00-00', '9876543258', '', 'sushil.kumar@gmail.com', '12345', 'abc', 20, 55, 1, 3, 'Equitable claims', 'govt', '', 'judge', 1, 'sih', 'LLB', 0),
-('L. Nageshwara Rao', 'ji', 'm', 'M21052', '0000-00-00', '9876543261', '', 'nageshwara.rao@gmail.com', '12345', 'abc', 20, 96, 1, 1, 'Divorce&Family claims', 'govt', '', 'judge', 1, 'sih', 'LLB', 0),
-('Shrikant Shivade', 'ji', 'm', 'M21054', '0000-00-00', '9876543263', '', 'shrikant.shivade@gmail.com', '12345', 'abc', 20, 65, 1, 7, 'Divorce&Family claims', 'govt', '', 'judge', 1, 'sih', 'LLB', 0),
-('Rubi Singh Ahuja', 'ji', 'f', 'M21057', '0000-00-00', '9876543266', '', 'rubi.ahuja@gmail.com', '12345', 'abc', 20, 69, 1, 14, 'Landlord&Tenant issue', 'govt', '', 'judge', 1, 'sih', 'LLM', 0),
-('Indira Arora', 'ji', 'f', 'M21062', '0000-00-00', '9876543271', '', 'indira.arora@gmail.com', '12345', 'abc', 20, 63, 1, 3, 'Divorce&Family claims', 'non-govt', '', 'judge', 1, 'sih', 'LLB', 0),
-('Vrinda Grover', 'ji', 'f', 'M21065', '0000-00-00', '9876543274', '', 'vrinda.grover@gmail.com', '12345', 'abc', 20, 74, 1, 12, 'Landlord&Tenant issue', 'non-govt', '', 'judge', 1, 'sih', 'LLM', 0),
-('Gaurav Patel', 'ji', 'm', 'M21070', '0000-00-00', '9876543279', '', 'gaurav.patel@gmail.com', '12345', 'abc', 20, 76, 1, 9, 'Contract claims', 'govt', '', 'judge', 1, 'sih', 'LLB', 0),
-('Rakesh Kumar', 'ji', 'm', 'R21001', '0000-00-00', '9876543210', '', 'rakesh.kumar@gmail.com', '12345', 'abc', 29, 12, 1, 4, 'Tort claims', 'govt', '', 'judge', 1, 'sih', 'LLB', 0),
-('Mukesh Sharma', 'ji', 'm', 'R21002', '0000-00-00', '9876543211', '', 'mukesh@gmail.com', '12345', 'abc', 29, 12, 1, 7, 'Contract claims', 'non-govt', '', 'judge', 1, 'sih', 'LLM', 0),
-('Shruti ', 'ji', 'f', 'R21007', '0000-00-00', '9876543216', '', 'shruti@gmail.com', '12345', 'abc', 29, 28, 2, 4, 'Equitable claims', 'non-govt', '', 'judge', 1, 'sih', 'LLB', 0),
-('Manoj Kumar', 'ji', 'm', 'R21008', '0000-00-00', '9876543217', '', 'manoj.shrama@gmail.com', '12345', 'abc', 29, 28, 3, 8, 'Tort claims', 'govt', '', 'judge', 1, 'sih', 'LLB', 0),
-('Saurabh Sain', 'ji', 'm', 'R21009', '0000-00-00', '9876543218', '', 'saurabh.sain@gmail.com', '12345', 'abc', 29, 28, 3, 12, 'Contract claims', 'govt', '', 'judge', 1, 'sih', 'LLM', 0),
-('Tanmay Mehra', 'ji', 'f', 'R21014', '0000-00-00', '9876543223', '', 'tanmay.mehra@gmail.com', '12345', 'abc', 29, 23, 1, 6, 'Contract claims', 'non-govt', '', 'judge', 1, 'sih', 'LLB', 0),
-('Fatima Khan', 'ji', 'f', 'R21015', '0000-00-00', '9876543224', '', 'fatima.khan@gmail.com', '12345', 'abc', 29, 23, 1, 4, 'Landlord&Tenant issue', 'govt', '', 'judge', 1, 'sih', 'LLB', 0),
-('Shalima Qhureshi', 'ji', 'f', 'R21020', '0000-00-00', '9876543229', '', 'shalima@gmail.com', '12345', 'abc', 29, 26, 1, 14, 'Equitable claims', 'govt', '', 'judge', 1, 'sih', 'LLM', 0),
-('Rohit Datt', 'ji', 'm', 'R21021', '0000-00-00', '9876543230', '', 'rohit.datt@gmail.com', '12345', 'abc', 29, 26, 1, 11, 'Landlord&Tenant issue', 'govt', '', 'judge', 1, 'sih', 'LLM', 0);
+INSERT INTO `judge_advocate` (`fname`, `lname`, `gender`, `bcn_id`, `dob`, `mobile`, `alternate_mobile`, `email`, `passwd`, `address`, `state_id`, `district_id`, `court_id`, `experience`, `specialization`, `type`, `image`, `user_type`, `active`, `hash`, `education`, `grading`) VALUES
+('Tiger Prabhakhar', 'ji', 'male', 'M21025', '0000-00-00', '9876543275', '', 'prabhakhar@gmail.com', '29be54a52396750258d886abc5417fda', 'abc', 20, 60, 1, 3, 'Landlord&Tenant issue', 'govt', '', 'judge', 0, 'sih', 'LLB', 2.5),
+('Mahesh Bhupati', 'ji', 'male', 'M21026', '0000-00-00', '9876543235', '', 'mahesh.bhupati@gmail.com', '12345', 'abc', 20, 60, 1, 4, 'Divorce&Family claims', 'non-govt', '', 'judge', 0, 'sih', 'LLB', 0),
+('Lal Behari Reddy', 'ji', 'male', 'M21027', '0000-00-00', '9876543236', '', 'behari.reddy@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'jaipur', 20, 60, 2, 5, 'Tort claims', 'govt', '', 'advocate', 0, 'sih', 'LLB', 4),
+('Nirmal Joshi', 'ji', 'Female', 'M21028', '0000-00-00', '9876543237', '', 'nirmal.joshi@gmail.com', '12345', 'abc', 20, 60, 2, 9, 'Landlord&Tenant issue', 'govt', '', 'advocate', 0, 'sih', 'LLM', 4),
+('Pravez Ahmad', 'ji', 'male', 'M21029', '0000-00-00', '9876543238', '', 'pravez.ahmad@gmail.com', '12345', 'abc', 20, 60, 2, 8, 'Tort claims', 'non-govt', '', 'advocate', 0, 'sih', 'LLB', 4),
+('Mubarak Begum', 'ji', 'Female', 'M21030', '0000-00-00', '9876543239', '', 'mubarak.begum@gmail.com', '12345', 'abc', 20, 85, 1, 9, 'Divorce&Family claims', 'non-govt', '', 'judge', 0, 'sih', 'LLM', 0),
+('Sidduique Alam', 'ji', 'female', 'M21031', '0000-00-00', '9876543240', '', 'sidduique.alam@gmail.com', '12345', 'abc', 20, 85, 1, 11, 'Landlord&Tenant issue', 'non-govt', '', 'judge', 0, 'sih', 'LLM', 0),
+('Samina Mirza', 'ji', 'female', 'M21032', '0000-00-00', '9876543241', '', 'samina.mirza@gmail.com', '12345', 'abc', 20, 85, 1, 14, 'Contract claims', 'govt', '', 'advocate', 0, 'sih', 'LLM', 4.5),
+('Sania Khan', 'ji', 'female', 'M21033', '0000-00-00', '9876543242', '', 'sania.khan@gmail.com', '12345', 'abc', 20, 85, 1, 11, 'Landlord&Tenant issue', 'govt', '', 'advocate', 0, 'sih', 'LLM', 4),
+('Sahil Pravez', 'ji', 'male', 'M21034', '0000-00-00', '9876543243', '', 'sahil.praveez@gmail.com', '12345', 'abc', 20, 86, 1, 16, 'Divorce&Family claims', 'non-govt', '', 'advocate', 0, 'sih', 'LLM', 4),
+('M S Hussain', 'ji', 'male', 'M21035', '0000-00-00', '9876543244', '', 'mshussain@gmail.com', '12345', 'abc', 20, 85, 1, 13, 'Equitable claims', 'govt', '', 'judge', 0, 'sih', 'LLB', 0),
+('Kiran Singh', 'ji', 'female', 'M21036', '0000-00-00', '9876543245', '', 'kiran.singh@gmail.com', '12345', 'abc', 20, 86, 1, 6, 'Contract claims', 'govt', '', 'advocate', 0, 'sih', 'LLB', 5),
+('Sameer Hussain', 'ji', 'male', 'M21037', '0000-00-00', '9876543246', '', 'sameer.hussain@gmail.com', '12345', 'abc', 20, 91, 1, 2, 'Divorce&Family claims', 'govt', '', 'judge', 0, 'sih', 'LLB', 0),
+('Navikiran Singh', 'ji', 'male', 'M21038', '0000-00-00', '9876543247', '', 'navikiran.singh@gmail.com', '12345', 'abc', 20, 91, 1, 7, 'Tort claims', 'govt', '', 'judge', 0, 'sih', 'LLB', 0),
+('Jaskirit Singh', 'ji', 'male', 'M21039', '0000-00-00', '9876543248', '', 'jaskirit.singh@gmail.com', '12345', 'abc', 20, 91, 1, 5, 'Landlord&Tenant issue', 'non-govt', '', 'advocate', 0, 'sih', 'LLB', 4),
+('Ram Jethalmini', 'ji', 'male', 'M21040', '0000-00-00', '9876543249', '', 'ram.jethalmini@gmail.com', '12345', 'abc', 20, 91, 2, 3, 'Contract claims', 'non-govt', '', 'advocate', 0, 'sih', 'LLB', 5),
+('Priyanka Singh', 'ji', 'female', 'M21041', '0000-00-00', '9876543250', '', 'priyanka.singh@gmail.com', '12345', 'abc', 20, 102, 2, 11, 'Tort claims', 'non-govt', '', 'advocate', 0, 'sih', 'LLM', 3),
+('K.T.S Tulsi', 'ji', 'male', 'M21042', '0000-00-00', '9876543251', '', 'ktusli@gmail.com', '12345', 'abc', 20, 91, 1, 15, 'Divorce&Family claims', 'govt', '', 'judge', 0, 'sih', 'LLM', 0),
+('Kiran Gaur', 'ji', 'female', 'M21043', '0000-00-00', '9876543252', '', 'kiran.gaur@gmail.com', '12345', 'abc', 20, 102, 2, 12, 'Equitable claims', 'non-govt', '', 'advocate', 0, 'sih', 'LLM', 5),
+('Sikha Khan', 'ji', 'female', 'M21044', '0000-00-00', '9876543253', '', 'sikha.khan@gmail.com', '12345', 'abc', 20, 70, 1, 4, 'Tort claims', 'govt', '', 'judge', 0, 'sih', 'LLB', 0),
+('Sana Quhershi', 'ji', 'female', 'M21045', '0000-00-00', '9876543254', '', 'sana.quhershi@gmail.com', '12345', 'abc', 20, 70, 1, 15, 'Contract claims', 'non-govt', '', 'judge', 0, 'sih', 'LLM', 4.9),
+('Indira Jaising', 'ji', 'female', 'M21046', '0000-00-00', '9876543255', '', 'indira.jaising@gmail.com', '12345', 'abc', 20, 70, 2, 13, 'Landlord&Tenant issue', 'govt', '', 'advocate', 0, 'sih', 'LLM', 5),
+('Shanti Bhushan', 'ji', 'female', 'M21047', '0000-00-00', '9876543256', '', 'shanti.bhushan@gmail.com', '12345', 'abc', 20, 70, 3, 11, 'Equitable claims', 'non-govt', '', 'advocate', 0, 'sih', 'LLM', 4),
+('Gopal Subramanium', 'ji', 'male', 'M21048', '0000-00-00', '9876543257', '', 'gopal.subramanium@gmail.com', '12345', 'abc', 20, 70, 3, 13, 'Contract claims', 'govt', '', 'advocate', 0, 'sih', 'LLM', 4.1),
+('Sushil Kumar', 'ji', 'male', 'M21049', '0000-00-00', '9876543258', '', 'sushil.kumar@gmail.com', '12345', 'abc', 20, 55, 1, 3, 'Equitable claims', 'govt', '', 'judge', 0, 'sih', 'LLB', 0),
+('Majeed Memon', 'ji', 'male', 'M21050', '0000-00-00', '9876543259', '', 'majeed.memon@gmail.com', '12345', 'abc', 20, 70, 3, 5, 'Landlord&Tenant issue', 'govt', '', 'advocate', 0, 'sih', 'LLB', 4),
+('Ujwal Nikam', 'ji', 'male', 'M21051', '0000-00-00', '9876543260', '', 'ujwal.nikam@gmail.com', '12345', 'abc', 20, 70, 3, 2, 'Tort claims', 'non-govt', '', 'advocate', 0, 'sih', 'LLB', 4),
+('L. Nageshwara Rao', 'ji', 'male', 'M21052', '0000-00-00', '9876543261', '', 'nageshwara.rao@gmail.com', '12345', 'abc', 20, 96, 1, 1, 'Divorce&Family claims', 'govt', '', 'judge', 0, 'sih', 'LLB', 0),
+('Satish Manishinde', 'ji', 'male', 'M21053', '0000-00-00', '9876543262', '', 'satish.manishinde@gmail.com', '12345', 'abc', 20, 70, 3, 6, 'Landlord&Tenant issue', 'non-govt', '', 'advocate', 0, 'sih', 'LLB', 5),
+('Shrikant Shivade', 'ji', 'male', 'M21054', '0000-00-00', '9876543263', '', 'shrikant.shivade@gmail.com', '12345', 'abc', 20, 65, 1, 7, 'Divorce&Family claims', 'govt', '', 'judge', 0, 'sih', 'LLB', 0),
+('Avirub Nag', 'ji', 'male', 'M21055', '0000-00-00', '9876543264', '', 'avirub.nag@gmail.com', '12345', 'abc', 20, 70, 3, 7, 'Contract claims', 'govt', '', 'advocate', 0, 'sih', 'LLB', 3.5),
+('Mishi Choudhary', 'ji', 'female', 'M21056', '0000-00-00', '9876543265', '', 'mishi.choudhary@gmail.com', '12345', 'abc', 20, 70, 3, 11, 'Tort claims', 'govt', '', 'advocate', 0, 'sih', 'LLM', 5),
+('Rubi Singh Ahuja', 'ji', 'female', 'M21057', '0000-00-00', '9876543266', '', 'rubi.ahuja@gmail.com', '12345', 'abc', 20, 69, 1, 14, 'Landlord&Tenant issue', 'govt', '', 'judge', 0, 'sih', 'LLM', 0),
+('Bhumesh Verma', 'ji', 'male', 'M21058', '0000-00-00', '9876543267', '', 'bhumesh.verma@gmail.com', '12345', 'abc', 20, 70, 3, 12, 'Equitable claims', 'govt', '', 'advocate', 0, 'sih', 'LLM', 5),
+('Rohit Kochhar', 'ji', 'male', 'M21059', '0000-00-00', '9876543268', '', 'rohit.kochhar@gmail.com', '12345', 'abc', 20, 70, 3, 12, 'Landlord&Tenant issue', 'non-govt', '', 'advocate', 0, 'sih', 'LLM', 5),
+('Karuna Neddy', 'ji', 'female', 'M21060', '0000-00-00', '9876543269', '', 'karuna.neddy@gmail.com', '12345', 'abc', 20, 70, 3, 4, 'Tort claims', 'non-govt', '', 'advocate', 0, 'sih', 'LLB', 4),
+('Sudha Bhardwaj', 'ji', 'female', 'M21061', '0000-00-00', '9876543270', '', 'sudha.bhardwaj@gmail.com', '12345', 'abc', 20, 70, 1, 4, 'Divorce&Family claims', 'non-govt', '', 'advocate', 0, 'sih', 'LLB', 4),
+('Indira Arora', 'ji', 'female', 'M21062', '0000-00-00', '9876543271', '', 'indira.arora@gmail.com', '12345', 'abc', 20, 63, 1, 3, 'Divorce&Family claims', 'non-govt', '', 'judge', 0, 'sih', 'LLB', 0),
+('Meneka Gurushawmi', 'ji', 'female', 'M21063', '0000-00-00', '9876543272', '', 'meneka.gurushawmi@gmail.com', '12345', 'abc', 20, 70, 1, 6, 'Landlord&Tenant issue', 'govt', '', 'advocate', 0, 'sih', 'LLB', 4),
+('Meenakshi', 'ji', 'female', 'M21064', '0000-00-00', '9876543273', '', 'meenakshi@gmail.com', '12345', 'abc', 20, 70, 1, 14, 'Contract claims', 'govt', '', 'advocate', 0, 'sih', 'LLM', 3.1),
+('Vrinda Grover', 'ji', 'female', 'M21065', '0000-00-00', '9876543274', '', 'vrinda.grover@gmail.com', '12345', 'abc', 20, 74, 1, 12, 'Landlord&Tenant issue', 'non-govt', '', 'judge', 0, 'sih', 'LLM', 0),
+('Suhail Nathani', 'ji', 'male', 'M21066', '0000-00-00', '9876543275', '', 'suhail.nathani@gmail.com', '12345', 'abc', 20, 70, 1, 3, 'Equitable claims', 'non-govt', '', 'advocate', 0, 'sih', 'LLB', 4),
+('Mohit Saraf', 'ji', 'male', 'M21067', '0000-00-00', '9876543276', '', 'mohit.saraf@gmail.com', '12345', 'abc', 20, 70, 1, 12, 'Divorce&Family claims', 'govt', '', 'advocate', 0, 'sih', 'LLM', 4),
+('Akil Hirani', 'ji', 'male', 'M21068', '0000-00-00', '9876543277', '', 'akil.kirani@gmail.com', '12345', 'abc', 20, 70, 1, 12, 'Tort claims', 'govt', '', 'advocate', 0, 'sih', 'LLM', 4),
+('Gopika Pant', 'ji', 'female', 'M21069', '0000-00-00', '9876543278', '', 'gopika.pant@gmail.com', '12345', 'abc', 20, 70, 1, 3, 'Divorce&Family claims', 'govt', '', 'advocate', 0, 'sih', 'LLB', 4),
+('Gaurav Patel', 'ji', 'male', 'M21070', '0000-00-00', '9876543279', '', 'gaurav.patel@gmail.com', '12345', 'abc', 20, 76, 1, 9, 'Contract claims', 'govt', '', 'judge', 0, 'sih', 'LLB', 3.4),
+('Rakesh Kumar', 'ji', 'male', 'R21001', '0000-00-00', '9876543210', '', 'rakesh.kumar@gmail.com', '12345', 'abc', 29, 12, 1, 4, 'Tort claims', 'govt', '', 'judge', 0, 'sih', 'LLB', 0),
+('Mukesh Sharma', 'ji', 'male', 'R21002', '0000-00-00', '9876543211', '', 'mukesh@gmail.com', '12345', 'abc', 29, 12, 1, 7, 'Contract claims', 'non-govt', '', 'judge', 0, 'sih', 'LLM', 3.7),
+('Sunil Sinha', 'ji', 'male', 'R21003', '0000-00-00', '9876543212', '', 'sunil@gmail.com', '12345', 'abc', 29, 12, 1, 5, 'Landlord&Tenant issue', 'govt', '', 'advocate', 0, 'sih', 'LLB', 4),
+('Shalini Singh', 'ji', 'female', 'R21004', '0000-00-00', '9876543213', '', 'shalini@gmail.com', '12345', 'abc', 29, 12, 1, 6, 'Equitable claims', 'govt', '', 'advocate', 0, 'sih', 'LLB', 4),
+('Priyanka Sharma', 'ji', 'female', 'R21005', '0000-00-00', '9876543214', '', 'priyanka.sharma@gmail.com', '12345', 'abc', 29, 12, 1, 11, 'Tort claims', 'non-govt', '', 'advocate', 0, 'sih', 'LLM', 3),
+('Akshay Sain', 'ji', 'male', 'R21006', '0000-00-00', '9876543215', '', 'akshay.sain@gmail.com', '12345', 'abc', 29, 28, 1, 2, 'Divorce&Family claims', 'non-govt', '', 'advocate', 0, 'sih', 'LLB', 4),
+('Shruti ', 'ji', 'female', 'R21007', '0000-00-00', '9876543216', '', 'shruti@gmail.com', '12345', 'abc', 29, 28, 2, 4, 'Equitable claims', 'non-govt', '', 'judge', 0, 'sih', 'LLB', 0),
+('Manoj Kumar', 'ji', 'male', 'R21008', '0000-00-00', '9876543217', '', 'manoj.shrama@gmail.com', '12345', 'abc', 29, 28, 3, 8, 'Tort claims', 'govt', '', 'judge', 0, 'sih', 'LLB', 0),
+('Saurabh Sain', 'ji', 'male', 'R21009', '0000-00-00', '9876543218', '', 'saurabh.sain@gmail.com', '12345', 'abc', 29, 28, 3, 12, 'Contract claims', 'govt', '', 'judge', 0, 'sih', 'LLM', 0),
+('Akshay Singh', 'ji', 'male', 'R21010', '0000-00-00', '9876543219', '', 'akshay.singh@gmail.com', '12345', 'abc', 29, 28, 1, 4, 'Divorce&Family claims', 'govt', '', 'advocate', 0, 'sih', 'LLB', 5),
+('Piyush Kumawat', 'ji', 'male', 'R21011', '0000-00-00', '9876543220', '', 'piyush.k@gmail.com', '12345', 'abc', 29, 28, 1, 5, 'Landlord&Tenant issue', 'govt', '', 'advocate', 0, 'sih', 'LLB', 5),
+('Rajesh ', 'ji', 'male', 'R21012', '0000-00-00', '9876543221', '', 'rajesh@gmail.com', '12345', 'abc', 29, 28, 1, 11, 'Equitable claims', 'govt', '', 'advocate', 0, 'sih', 'LLM', 3),
+('Saroj Meera', 'ji', 'female', 'R21013', '0000-00-00', '9876543222', '', 'saroj.meera@gmail.com', '12345', 'abc', 29, 28, 1, 12, 'Tort claims', 'non-govt', '', 'advocate', 0, 'sih', 'LLM', 3),
+('Tanmay Mehra', 'ji', 'female', 'R21014', '0000-00-00', '9876543223', '', 'tanmay.mehra@gmail.com', '12345', 'abc', 29, 23, 1, 6, 'Contract claims', 'non-govt', '', 'judge', 0, 'sih', 'LLB', 0),
+('Fatima Khan', 'ji', 'female', 'R21015', '0000-00-00', '9876543224', '', 'fatima.khan@gmail.com', '12345', 'abc', 29, 23, 1, 4, 'Landlord&Tenant issue', 'govt', '', 'judge', 0, 'sih', 'LLB', 0),
+('Y.S Reddy', 'ji', 'female', 'R21016', '0000-00-00', '9876543225', '', 'reddy@gmail.com', '12345', 'abc', 29, 23, 2, 2, 'Equitable claims', 'non-govt', '', 'advocate', 0, 'sih', 'LLB', 4),
+('Dinesh Moera', 'ji', 'female', 'R21017', '0000-00-00', '9876543226', '', 'dinesh.mehra@gmail.com', '12345', 'abc', 29, 23, 2, 4, 'Contract claims', 'govt', '', 'advocate', 0, 'sih', 'LLB', 4),
+('Md. Rafeek', 'ji', 'male', 'R21018', '0000-00-00', '9876543227', '', 'rafeek@gmail.com', '12345', 'abc', 29, 23, 2, 7, 'Tort claims', 'non-govt', '', 'advocate', 0, 'sih', 'LLM', 5),
+('Sana Khan', 'ji', 'female', 'R21019', '0000-00-00', '9876543228', '', 'sana.khan@gmail.com', '12345', 'abc', 29, 23, 2, 13, 'Divorce&Family claims', 'govt', '', 'advocate', 0, 'sih', 'LLM', 4),
+('Shalima Qhureshi', 'ji', 'female', 'R21020', '0000-00-00', '9876543229', '', 'shalima@gmail.com', '12345', 'abc', 29, 26, 1, 14, 'Equitable claims', 'govt', '', 'judge', 0, 'sih', 'LLM', 0),
+('Rohit Datt', 'ji', 'male', 'R21021', '0000-00-00', '9876543230', '', 'rohit.datt@gmail.com', '12345', 'abc', 29, 26, 1, 11, 'Landlord&Tenant issue', 'govt', '', 'judge', 0, 'sih', 'LLM', 0),
+('Baghirath Sharma', 'ji', 'male', 'R21022', '0000-00-00', '9876543231', '', 'baghirath@gmail.com', '12345', 'abc', 29, 26, 2, 10, 'Tort claims', 'non-govt', '', 'advocate', 0, 'sih', 'LLM', 4),
+('Rishabh Awasthi', 'ji', 'male', 'R21023', '0000-00-00', '9876543232', '', 'rishabh.awasthi@gmail.com', '12345', 'abc', 29, 26, 2, 3, 'Landlord&Tenant issue', 'non-govt', '', 'advocate', 0, 'sih', 'LLB', 4),
+('Josheph Vijay', 'ji', 'male', 'R21024', '0000-00-00', '9876543233', '', 'josheph.vijay@gmail.com', '12345', 'abc', 29, 26, 2, 6, 'Contract claims', 'non-govt', '', 'advocate', 0, 'sih', 'LLB', 4);
 
 -- --------------------------------------------------------
 
@@ -292,6 +351,15 @@ CREATE TABLE `opponent_record` (
   `address` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `opponent_record`
+--
+
+INSERT INTO `opponent_record` (`opponent_id`, `case_no`, `opponent_name`, `fathers_name`, `address`) VALUES
+(6, 'rajjai30032018', 'Loki', 'TRY', 'Jaipur'),
+(7, 'rajjai30032018', 'Harshit', 'TRy2', 'Dholpur'),
+(8, 'rajjai31032018', 'Rsjst', 'Rajat', '12345');
+
 -- --------------------------------------------------------
 
 --
@@ -304,7 +372,7 @@ CREATE TABLE `reg_client` (
   `lname` varchar(40) NOT NULL,
   `fathername` varchar(40) NOT NULL,
   `mothername` varchar(40) NOT NULL,
-  `gender` tinyint(4) NOT NULL,
+  `gender` varchar(7) NOT NULL,
   `dob` date NOT NULL,
   `mobile` varchar(14) NOT NULL,
   `email` varchar(40) NOT NULL,
@@ -322,9 +390,10 @@ CREATE TABLE `reg_client` (
 --
 
 INSERT INTO `reg_client` (`id`, `fname`, `lname`, `fathername`, `mothername`, `gender`, `dob`, `mobile`, `email`, `passwd`, `address`, `caste`, `state`, `district`, `hash`, `active`) VALUES
-(6, 'aa', 'aa', 'aa', 'aa', 0, '0222-02-02', '222222', 'aaa@gmail.com', '1de84af5a569cdab9e1a3603a224ec9c', '2222', '', 'Madhya Pradesh', 'Betul', 'a49e9411d64ff53eccfdd09ad10a15b3', 0),
-(7, 'gaurav', 'goyal', 'ramkumar goyal', 'manju goyal', 0, '2018-10-31', '7611858675', 'gaurav1997dlp@gmail.com', '857f12c7851f6931f1c1ea871cce12e2', 'jaipur', '', 'Rajasthan', 'Dholpur', '9be40cee5b0eee1462c82c6964087ff9', 0),
-(8, 'Rajat', 'Bhardwaj', 'OP Sharma', 'Mamta Sharma', 0, '1998-09-23', '99999999', 'brajat9090@gmail.com', '25f9e794323b453885f5181f1b624d0b', 'Mansarovar, Jaipur', '', 'Rajasthan', 'Jaipur', '6c4b761a28b734fe93831e3fb400ce87', 0);
+(1, 'Rajat', 'Bhardwaj', 'OP Sharma', 'Mamta Sharma', 'Male', '1998-09-23', '9999999999', 'brajat9090@gmail.com', '698d51a19d8a121ce581499d7b701668', '123', 'General', 'Rajasthan', 'Jaipur', '698d51a19d8a121ce581499d7b701668', 0),
+(11, 'Prateek', 'Jaim', 'Jain', 'Jain', 'Male', '1990-03-16', '8600024743', 'prateeknitish.jain@gmail.com', '882e23ac5289d0f9b354fa734e205c16', 'Jaipur', 'General', 'Rajasthan', 'Jaipur', 'f5f8590cd58a54e94377e6ae2eded4d9', 0),
+(12, 'Prateek', 'Jaim', 'Jain', 'Jain', 'Male', '1990-03-16', '8600024743', 'prateeknitish.jain@gmail.com', '25f9e794323b453885f5181f1b624d0b', 'Jaipur', 'General', 'Rajasthan', 'Ajmer', 'a3c65c2974270fd093ee8a9bf8ae7d0b', 0),
+(13, 'Prateek', 'Jaim', 'Jain', 'Jain', 'Male', '1990-03-16', '8600024743', 'prateeknitish.jain@gmail.com', 'bbb8aae57c104cda40c93843ad5e6db8', 'Jaipur', 'General', 'Delhi', 'Central Delhi', '5c04925674920eb58467fb52ce4ef728', 0);
 
 -- --------------------------------------------------------
 
@@ -334,50 +403,51 @@ INSERT INTO `reg_client` (`id`, `fname`, `lname`, `fathername`, `mothername`, `g
 
 CREATE TABLE `state_list` (
   `state_id` int(3) NOT NULL,
-  `state_name` varchar(20) NOT NULL
+  `state_name` varchar(20) NOT NULL,
+  `state_name_code` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `state_list`
 --
 
-INSERT INTO `state_list` (`state_id`, `state_name`) VALUES
-(1, 'Andaman & Nicobar Is'),
-(2, 'Andhra Pradesh'),
-(3, 'Arunachal Pradesh'),
-(4, 'Assam'),
-(5, 'Bihar'),
-(6, 'Chandigarh'),
-(7, 'Chattisgarh'),
-(8, 'Dadra & Nagar Haveli'),
-(9, 'Daman & Diu'),
-(10, 'Delhi'),
-(11, 'Goa'),
-(12, 'Gujarat'),
-(13, 'Haryana'),
-(14, 'Himachal Pradesh'),
-(15, 'Jammu & Kashmir'),
-(16, 'Jharkhand'),
-(17, 'Karnataka'),
-(18, 'Kerala'),
-(19, 'Lakshadweep'),
-(20, 'Madhya Pradesh'),
-(21, 'Maharashtra'),
-(22, 'Manipur'),
-(23, 'Meghalaya'),
-(24, 'Mizoram'),
-(25, 'Nagaland'),
-(26, 'Odisha'),
-(27, 'Poducherry'),
-(28, 'Punjab'),
-(29, 'Rajasthan'),
-(30, 'Sikkim'),
-(31, 'Tamil Nadu'),
-(32, 'Telangana'),
-(33, 'Tripura'),
-(34, 'Uttar Pradesh'),
-(35, 'Uttarakhand'),
-(36, 'West Bengal');
+INSERT INTO `state_list` (`state_id`, `state_name`, `state_name_code`) VALUES
+(1, 'Andaman & Nicobar Is', 'AN'),
+(2, 'Andhra Pradesh', 'AP'),
+(3, 'Arunachal Pradesh', 'AR'),
+(4, 'Assam', 'AS'),
+(5, 'Bihar', 'BR'),
+(6, 'Chandigarh', 'CH'),
+(7, 'Chattisgarh', 'CT'),
+(8, 'Dadra & Nagar Haveli', 'DN'),
+(9, 'Daman & Diu', 'DD'),
+(10, 'Delhi', 'DL'),
+(11, 'Goa', 'GA'),
+(12, 'Gujarat', 'GJ'),
+(13, 'Haryana', 'HR'),
+(14, 'Himachal Pradesh', 'HP'),
+(15, 'Jammu & Kashmir', 'JK'),
+(16, 'Jharkhand', 'JH'),
+(17, 'Karnataka', 'KA'),
+(18, 'Kerala', 'KL'),
+(19, 'Lakshadweep', 'LD'),
+(20, 'Madhya Pradesh', 'MP'),
+(21, 'Maharashtra', 'MH'),
+(22, 'Manipur', 'MN'),
+(23, 'Meghalaya', 'ML'),
+(24, 'Mizoram', 'MZ'),
+(25, 'Nagaland', 'NL'),
+(26, 'Odisha', 'OR'),
+(27, 'Poducherry', 'PY'),
+(28, 'Punjab', 'PB'),
+(29, 'Rajasthan', 'RJ'),
+(30, 'Sikkim', 'SK'),
+(31, 'Tamil Nadu', 'TN'),
+(32, 'Telangana', 'TG'),
+(33, 'Tripura', 'TR'),
+(34, 'Uttar Pradesh', 'UP'),
+(35, 'Uttarakhand', 'UT'),
+(36, 'West Bengal', 'WB');
 
 --
 -- Indexes for dumped tables
@@ -461,10 +531,15 @@ ALTER TABLE `state_list`
 ALTER TABLE `next_date_time`
   MODIFY `id` int(14) NOT NULL AUTO_INCREMENT COMMENT 'PK';
 --
+-- AUTO_INCREMENT for table `opponent_record`
+--
+ALTER TABLE `opponent_record`
+  MODIFY `opponent_id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'PK', AUTO_INCREMENT=9;
+--
 -- AUTO_INCREMENT for table `reg_client`
 --
 ALTER TABLE `reg_client`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'PK', AUTO_INCREMENT=9;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'PK', AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `state_list`
 --
@@ -494,13 +569,6 @@ ALTER TABLE `court_list`
 --
 ALTER TABLE `district_list`
   ADD CONSTRAINT `district_list_ibfk_1` FOREIGN KEY (`s_id`) REFERENCES `state_list` (`state_id`);
-
---
--- Constraints for table `file_petition`
---
-ALTER TABLE `file_petition`
-  ADD CONSTRAINT `file_petition_ibfk_1` FOREIGN KEY (`state_id`) REFERENCES `state_list` (`state_id`),
-  ADD CONSTRAINT `file_petition_ibfk_2` FOREIGN KEY (`district_id`) REFERENCES `district_list` (`d_id`);
 
 --
 -- Constraints for table `judge_advocate`

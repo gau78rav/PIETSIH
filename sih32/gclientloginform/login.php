@@ -1,4 +1,5 @@
 <?php
+		session_start();
 if(isset($_POST['submit']))
 {
 
@@ -14,15 +15,18 @@ if(isset($_POST['submit']))
 	$result=mysqli_query($conn, $q);
 	$num=mysqli_num_rows($result);	
 
-	if( $num==1 )
+	if( $num==1 && $_SESSION['page_status']== 1)
 	{
-		session_start();
 		$_SESSION['email']=$email;
-	    header('location: dashboard.php');
+		echo "<script>window.location.href='../instruction.php'</script>";
+	}
+	else if($num== 1)
+	{	
+	 	echo "<script>window.location.href='dashboard.php'</script>"; 
 	}
 	else
 	{
-	       header('location: loginformclient.php');
+	    echo "<script>window.location.href='loginformclient.php'</script>";
 	}
 }
 

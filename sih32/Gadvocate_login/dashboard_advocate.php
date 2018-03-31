@@ -1,3 +1,11 @@
+<?php
+	session_start();
+	require_once 'dbcon.php';
+	if (!isset($_SESSION['email']) && !isset($_SESSION['bcn_no'])) {
+    	echo "<script>window.location.href='Gadvocate_login/loginformadvocate.php'</script>";
+  	exit();
+  }
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,20 +33,21 @@
 	    	margin-left: 90px;
 	    	line-height: 80px;
 	    }
-	    .heading
+	  .heading
 	    {
-	    	width:25%;
+	    	width:50%;
 	    	height: 90%;
 	    	float: left;
-	    	
-	    }
+	    	padding-left: 100px;
 
+	    }
 	    .heading1
 	    {
-	    	width:74%;
+	    	width:100%;
 	    	height: 90%;
 	    	float: left;
-	    		
+	    	margin-bottom: -100px;	
+
 	    }
 	    .heading h2
 	    {
@@ -50,7 +59,6 @@
 	    {
 	    	font-weight: 400;
 	    	color: white;
-
 	    }
 
 
@@ -234,13 +242,19 @@
 
 </head>
 <body>
+
+	<?php
+		$query= "SELECT `fname` from `judge_advocate` where `email` = '".$_SESSION['email']."'";
+		$query_run = mysqli_query($conn, $query);
+		$query_output = mysqli_fetch_assoc($query_run);
+	?>
 <div class="header">
 	<div class="heading1">
-		<h1>Hello !! (logged in as Advocate)</h1>
-		<img src="img/satya.png" style="float: right;margin-top: 0px;" width="80" height="80"></div>
-	        <div class="heading">
-			<h2><b>National Judiciary Portal</b></h2>
-			<h3 >Ministry of Justice & Law<br>Government of India</h3>
+		<h1 style="font-size: 1.2em;float: right">Hello <?php echo $query_output['fname']; ?> !! (logged in as Advocate)</h1>
+		<img src="img/satya.png" style="float: left;margin-top: 0px;" width="80" height="80"></div>
+	        <div class="heading" >
+			<h2 ><b>National Judiciary Portal</b></h2>
+			<h3  >Ministry of Justice & Law<br>Government of India</h3>
 	</div>
 </div>
     <nav>

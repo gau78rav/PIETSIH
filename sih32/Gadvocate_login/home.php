@@ -1,7 +1,10 @@
 <?php
 	session_start();
 	require_once 'dbcon.php';
-
+	if (!isset($_SESSION['email']) && !isset($_SESSION['bcn_no'])) {
+    	echo "<script>window.location.href='Gadvocate_login/loginformadvocate.php'</script>";
+  	exit();
+  }
 	?>
 	<style type="text/css">
 		table

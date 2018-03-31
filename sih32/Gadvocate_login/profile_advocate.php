@@ -1,12 +1,13 @@
 <?php
 session_start();
 require_once 'dbcon.php';
+if (!isset($_SESSION['email']) && !isset($_SESSION['bcn_no'])) {
+        echo "<script>window.location.href='Gadvocate_login/loginformadvocate.php'</script>";
+    exit();
+}
 if(isset($_SESSION['bcn_no']))
 {
 	$license=$_SESSION['bcn_no'];
-}
-else{
-
 }
 $q="SELECT * from judge_advocate where bcn_id ='$license'";
 $query=mysqli_query($conn,$q);

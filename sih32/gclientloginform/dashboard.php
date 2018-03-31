@@ -40,20 +40,25 @@ else
 	    }
 	    .heading
 	    {
-	    	width:25%;
+	    	width:50%;
 	    	height: 90%;
 	    	float: left;
+	    	padding-left: 100px;
+
 	    }
 	    .heading1
 	    {
-	    	width:74%;
+	    	width:100%;
 	    	height: 90%;
-	    	float: left;	
+	    	float: left;
+	    	margin-bottom: -100px;	
+
 	    }
 	    .heading h2
 	    {
 	    	font-weight: 400;
 	    	color: white;
+
 	    }
 	    .heading h3
 	    {
@@ -212,13 +217,18 @@ else
 	
 </head>
 <body>
+	<?php
+		$query= "SELECT `fname` from `reg_client` where `email` = '".$username."'";
+		$query_run = mysqli_query($conn, $query);
+		$query_output = mysqli_fetch_assoc($query_run);
+	?>
 <div class="header">
 	<div class="heading1">
-		<h1>Hello <b><?php echo $username?> </b>! (logged in as Client)</h1>
-		<img src="img/satya.png" style="float: right;margin-top: 0px;" width="80" height="80"></div>
-	        <div class="heading">
-			<h2><b>National Judiciary Portal</b></h2>
-			<h3 >Ministry of Justice & Law<br>Government of India</h3>
+		<h1 style="font-size: 1.2em;float: right">Hello <b><?php echo $query_output['fname']; ?> </b>! (logged in as Client)</h1>
+		<img src="img/satya.png" style="float: left;margin-top: 0px;" width="80" height="80"></div>
+	        <div class="heading" >
+			<h2 ><b>National Judiciary Portal</b></h2>
+			<h3  >Ministry of Justice & Law<br>Government of India</h3>
 	</div>
 </div>
     <nav>
@@ -241,7 +251,7 @@ else
 <div class="main-content">
 	<div class="list">
 		<ul>
-			<li style="background-color:#2B669B ;color: white"><i class="list-group-item list-group-item-action active" style="color: white"></i><br><a href="dashboard_content.php" target="output" style="color: white">Dashboard</a></li>
+			<li style="background-color:#2B669B ;color: white"><i style="color: white"></i><br><a href="dashboard_content.php" target="output" style="color: white">Dashboard</a></li>
 			<li><i class="fa fa-bell-o"></i><br><a href="status_bar.php" target="output">Status</a></li>
 			<li><i class="fa fa-user-o"></i><br><a href="profile_client.php" target="output">Profile</a></li>
 

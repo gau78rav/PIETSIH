@@ -1,5 +1,10 @@
 <?php
-	require "dbcon.php";
+	session_start();
+	require_once "dbcon.php";
+	if (!isset($_SESSION['email'])) {
+		echo "<script>window.location.href='../index.html'</script>";
+		exit();
+	}
 	if (isset($_POST['submit']))
 	 {
 			$fname = mysqli_real_escape_string($conn, $_POST['fname']);
